@@ -86,26 +86,23 @@ namespace TwitchChat
             Loaded += MainWindow_Loaded;
             Closing += MainWindow_Closing;
 
-            if (File.Exists("clientID"))
+            if (File.Exists("clientID.txt".ToLower()))
             {
-                clientID = File.ReadAllText("clientID");
+                clientID = File.ReadAllText("clientID.txt".ToLower());
             }
-            if (File.Exists("clientSecret"))
+
+            if (File.Exists("clientSecret.txt".ToLower()))
             {
-                clientSecret = File.ReadAllText("clientSecret");
+                clientSecret = File.ReadAllText("clientSecret.txt".ToLower());
             }
 
             if (string.IsNullOrEmpty(clientID) || string.IsNullOrEmpty(clientSecret))
             {
                 var result = MessageBox.Show("Twitch clientID or clientSecret are empty\n" +
                     "create clientID.txt and clientSecret.txt files in root directory\n" +
-                    "and put the Twitch client ID and client secret in there", "Empty tokens error");
+                    "and put the Twitch client ID and client secret in there", "Empty Tokens Error");
                 App.Current.Shutdown();
             }
-
-            // Properties.Settings.Default.ClientID;
-            //clientSecret = Properties.Settings.Default.ClientSecret;
-
         }
 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)

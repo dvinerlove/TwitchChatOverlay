@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="TwitchChat.DS.DisplaySettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TwitchChat.DS"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d"  d:DesignWidth="800">
+    <Grid>
+
+        <StackPanel>
+            <CheckBox IsChecked="True" Content="Закрепить" Name="PinCB" Click="PinCB_Click" Cursor="Hand" Visibility="Collapsed"/>
+
+            <ui:TextBox  Margin="8 8 8 0" Name="BroadcasterID" TextChanged="BroadcasterID_TextChanged"   PlaceholderText="broadcaster id" MinWidth="200" HorizontalAlignment="Left" Cursor="IBeam" />
+
+            <StackPanel Name="SettingsGrid" IsEnabled="{Binding ElementName=PinCB, Path=IsChecked}">
+                <TextBlock Margin="8 8 8 0"  Text="Расположение:"/>
+                <Grid Margin="8 8 8 0"   Width="70 " HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <RadioButton Name="TopRightButton" Click="TopRight" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+                    <RadioButton Name="BottomRightButton" Click="BottomRight" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="1"/>
+                    <RadioButton Name="BottomLeftButton" Click="BottomLeft" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1"/>
+                    <RadioButton Name="TopLeftButton" Click="TopLeft" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" />
+                </Grid>
+                <TextBlock Margin="8 8 8 0"    Text="прозрачность фона:"/>
+                <Slider Margin="8 8 8 0"   Name="BackgroundSlider" Maximum="1" TickFrequency="0.1" Value="0.5" ValueChanged="Slider_ValueChanged"/>
+                <TextBlock Margin="8 8 8 0"    Text="прозрачность текста:"/>
+                <Slider Margin="8 8 8 0"   Name="ForegroundSlider" Maximum="1" TickFrequency="0.1" Value="0.5" ValueChanged="Slider_ValueChanged_1"/>
+                <TextBlock  Margin="8 8 8 0"   Text="отступы:"/>
+                <Slider Margin="8 8 8 0"   Name="MarginSlider" Maximum="72" TickFrequency="0.1" Value="0.5" ValueChanged="Slider_ValueChanged_2"/>
+
+                <TextBlock Margin="8 8 8 0"    Text="max messages count:"/>
+                <ui:TextBox Name="MaxMessagesCount" Margin="8 8 8 0" Cursor="IBeam"   />
+                <TextBlock  Margin="8 8 8 0"   Text="inactive timeout:"/>
+                <ui:TextBox Name="InactiveTimeout" Margin="8 8 8 0"   />
+
+
+                <ui:Button Margin="8 8 8 0"   Content="Save" Click="Button_Click"/>
+                <TextBlock Text="beta"  />
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="TwitchChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwitchChat"
+        Style="{StaticResource UiWindow}"
+        
+        mc:Ignorable="d"
+        MouseDown="Window_MouseDown" Name="MyWindow"
+        Title="PapaVeeskas Twitch Chat Overlay"  
+  WindowStartupLocation="CenterScreen"
+               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+        xmlns:ds="clr-namespace:TwitchChat.DS" xmlns:tabs="clr-namespace:TwitchChat.Tabs">
+    <Grid>
+        <StackPanel >
+            <ui:TitleBar Name="TitleBar" CanMaximize="False" 
+  Title="{Binding ElementName=MyWindow, Path=Title}"
+  Grid.Row="0">
+            </ui:TitleBar>
+
+            <TabControl Margin="8" >
+                <TabItem Header="Start bot"  >
+                    <Grid Name="Settings" >
+                        <StackPanel Margin="8" HorizontalAlignment="Left" >
+                            <Button Margin="0 8" HorizontalAlignment="Left" Name="StartButton" Content="Start" Click="Button_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Name="SettingsTab" Header="Settings">
+                    <!--<tabs:DisplaySettingsTab x:Name="ViewSettingsTab"/>-->
+                </TabItem>
+                <TabItem Name="LogTab" Header="Log">
+                        <ui:DynamicScrollViewer  Height="{Binding ElementName=MyWindow, Path=ActualHeight}" VerticalScrollBarVisibility="Visible">
+                        <StackPanel  MinHeight="20" MinWidth="20"  Name="StackPanel1"/>
+                        </ui:DynamicScrollViewer>
+                </TabItem>
+            </TabControl>
+
+        </StackPanel>
+        <!--<ui:MessageBox Name="MessageBox" Owner="{Binding ElementName=MyWindow}"/>-->
+    </Grid>
+</Window>
